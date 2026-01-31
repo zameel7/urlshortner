@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed-coupons": "node --experimental-strip-types scripts/seed-coupon.ts"
   },
   "dependencies": {
     "firebase": "^12.7.0",
@@ -16,6 +17,7 @@
     "remixicon": "^4.7.0"
   },
   "devDependencies": {
+    "firebase-admin": "^13.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
