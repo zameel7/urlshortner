@@ -31,7 +31,7 @@ export default function LandingPage() {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.logoContainer}>
-          <Image src="/logo.png" alt="Shortly Logo" width={64} height={64} className={styles.logoImage} />
+          <Image src="/logo.jpg" alt="Shortly Logo" width={64} height={64} className={styles.logoImage} />
           <h1 className={styles.logoText}>Shortly</h1>
         </div>
         <div className={styles.authButtons}>

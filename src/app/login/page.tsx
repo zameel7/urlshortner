@@ -48,7 +48,7 @@ export default function LoginPage() {
     <div className={styles.container}>
       <div className={styles.card}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-          <Image src="/logo.png" alt="Shortly Logo" width={64} height={64} style={{ objectFit: 'contain' }} />
+          <Image src="/logo.jpg" alt="Shortly Logo" width={64} height={64} style={{ objectFit: 'contain' }} />
         </div>
         <h1 className={styles.title}>Shortly</h1>
         <p className={styles.subtitle}>Sign in to create and manage your short links</p>

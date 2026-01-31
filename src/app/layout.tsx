@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "Shortly is a simple and free URL shortener. Create short links, track clicks, and manage your links in one place.",
   icons: {
     icon: new URL("/favicon.ico", baseUrl).toString(),
-    apple: new URL("/logo.png", baseUrl).toString(),
+    apple: new URL("/logo.jpg", baseUrl).toString(),
   },
   openGraph: {
     title: "Shortly - Simple URL Shortener for Business & Personal Use",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       "Shortly is a simple and free URL shortener. Create short links, track clicks, and manage your links in one place.",
     images: [
       {
-        url: new URL("/og-image.png", baseUrl).toString(),
+        url: new URL("/og-image.svg", baseUrl).toString(),
         width: 1200,
         height: 630,
         alt: "Shortly - URL Shortener",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "Shortly is a simple and free URL shortener. Create short links, track clicks, and manage your links in one place.",
     images: [
       {
-        url: new URL("/og-image.png", baseUrl).toString(),
+        url: new URL("/og-image.svg", baseUrl).toString(),
         width: 1200,
         height: 630,
         alt: "Shortly - URL Shortener",

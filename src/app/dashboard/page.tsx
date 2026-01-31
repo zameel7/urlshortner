@@ -17,11 +17,14 @@ function DashboardContent() {
   const [showPendingNotification, setShowPendingNotification] = useState(false);
 
   useEffect(() => {
+    // Avoid hydration mismatch: only render dashboard content after client mount
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional mount gate
     setMounted(true);
   }, []);
 
   useEffect(() => {
     if (mounted && initialUrl && user && isSubscribed) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- show notification when URL is pre-filled
       setShowPendingNotification(true);
       const timer = setTimeout(() => setShowPendingNotification(false), 8000);
       return () => clearTimeout(timer);
@@ -55,7 +58,7 @@ function DashboardContent() {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.logoContainer}>
-            <Image src="/logo.png" alt="Shortly Logo" width={48} height={48} className={styles.logoImage} />
+            <Image src="/logo.jpg" alt="Shortly Logo" width={48} height={48} className={styles.logoImage} />
             <h1 className={styles.logoText}>Shortly</h1>
           </div>
           <div className={styles.userInfo}>

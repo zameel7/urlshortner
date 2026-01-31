@@ -36,8 +36,11 @@ export default function LinkHistory() {
     let unsubscribe: (() => void) | undefined;
 
     if (!user) {
-      setLinks([]);
-      setLoading(false);
+      // Defer to avoid synchronous setState in effect (lint: react-hooks/set-state-in-effect)
+      queueMicrotask(() => {
+        setLinks([]);
+        setLoading(false);
+      });
     } else {
       const q = query(
         collection(db, 'shortlinks'),
