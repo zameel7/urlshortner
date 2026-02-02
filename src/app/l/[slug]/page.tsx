@@ -83,7 +83,7 @@ export default function LinkSharePage() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Shortly</h1>
+        <h1 className={styles.title}>trim.it</h1>
         <div className={styles.info}>
           <p className={styles.label}>Short link</p>
           <code className={styles.shortUrl}>{shortUrl}</code>

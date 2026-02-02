@@ -58,8 +58,8 @@ function DashboardContent() {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.logoContainer}>
-            <Image src="/logo.jpg" alt="Shortly Logo" width={48} height={48} className={styles.logoImage} />
-            <h1 className={styles.logoText}>Shortly</h1>
+            <Image src="/logo.jpg" alt="trim.it Logo" width={48} height={48} className={styles.logoImage} />
+            <h1 className={styles.logoText}>trim.it</h1>
           </div>
           <div className={styles.userInfo}>
             <span className={styles.userName}>{user.displayName}</span>

@@ -1,4 +1,4 @@
-# Shortly - URL Shortener
+# trim.it - URL Shortener
 
 A simple URL shortener built with the same tech stack as the qrcodegen app: Next.js 16, React 19, TypeScript, Firebase (Auth + Firestore), CSS Modules, and Remixicon.
 
