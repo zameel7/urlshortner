@@ -1,57 +1,65 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "remixicon/fonts/remixicon.css";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? process.env.NEXT_PUBLIC_BASE_URL
-  : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
-  title: "trim.it - Simple URL Shortener for Business & Personal Use",
-  description:
-    "trim.it is a simple and free URL shortener. Create short links, track clicks, and manage your links in one place.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "url shortener",
+    "link shortener",
+    "custom short links",
+    "short url",
+    "free url shortener",
+    "click tracking",
+    "link analytics",
+    "branded links",
+  ],
+  authors: [{ name: "Zameel Hassan", url: "https://zameel7.me" }],
+  creator: "Zameel Hassan",
   icons: {
-    icon: new URL("/favicon.ico", baseUrl).toString(),
-    apple: new URL("/logo.jpg", baseUrl).toString(),
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "trim.it - Simple URL Shortener for Business & Personal Use",
-    description:
-      "trim.it is a simple and free URL shortener. Create short links, track clicks, and manage your links in one place.",
-    images: [
-      {
-        url: new URL("/og-image.svg", baseUrl).toString(),
-        width: 1200,
-        height: 630,
-        alt: "trim.it - URL Shortener",
-      },
-    ],
     type: "website",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "trim.it - Simple URL Shortener for Business & Personal Use",
-    description:
-      "trim.it is a simple and free URL shortener. Create short links, track clicks, and manage your links in one place.",
-    images: [
-      {
-        url: new URL("/og-image.svg", baseUrl).toString(),
-        width: 1200,
-        height: 630,
-        alt: "trim.it - URL Shortener",
-      },
-    ],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0b0d" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f4f0" },
+  ],
 };
 
 export default function RootLayout({
