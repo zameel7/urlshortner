@@ -56,7 +56,7 @@ export default function PlanPage() {
   };
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
           <div className={styles.iconWrapper}>
@@ -69,6 +69,7 @@ export default function PlanPage() {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
+          <label htmlFor="coupon" className={styles.label}>ACCESS CODE</label>
           <input
             id="coupon"
             type="text"
@@ -81,8 +82,8 @@ export default function PlanPage() {
             autoComplete="off"
           />
 
-          {error && <div className={styles.error}>{error}</div>}
-          {success && <div className={styles.success}>{success}</div>}
+          {error && <div className={styles.error} role="alert">{error}</div>}
+          {success && <div className={styles.success} role="status">{success}</div>}
 
           <button
             type="submit"
@@ -107,6 +108,6 @@ export default function PlanPage() {
           Sign Out
         </button>
       </div>
-    </div>
+    </main>
   );
 }
