@@ -88,24 +88,29 @@ export default function ShortenForm(props: Props) {
 
   return (
     <div className={styles.container}>
+      <p className={styles.eyebrow}>CREATE / NEW LINK</p>
       <h2 className={styles.title}>Shorten URL</h2>
 
       <div className={styles.inputGroup}>
-        <input
-          type="url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Enter URL (e.g., https://example.com)"
-          className={styles.input}
-          onKeyDown={(e) => e.key === 'Enter' && shortenUrl()}
-        />
-        <button
-          onClick={shortenUrl}
-          disabled={loading}
-          className={styles.shortenButton}
-        >
-          {loading ? 'Shortening...' : 'Shorten'}
-        </button>
+        <label htmlFor="destination-url" className={styles.pathLabel}>Destination URL</label>
+        <div className={styles.destinationRow}>
+          <input
+            id="destination-url"
+            type="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="Enter URL (e.g., https://example.com)"
+            className={styles.input}
+            onKeyDown={(e) => e.key === 'Enter' && shortenUrl()}
+          />
+          <button
+            onClick={shortenUrl}
+            disabled={loading}
+            className={styles.shortenButton}
+          >
+            {loading ? 'Shortening...' : 'Shorten'}
+          </button>
+        </div>
       </div>
 
       <div className={styles.inputGroup}>
@@ -125,7 +130,7 @@ export default function ShortenForm(props: Props) {
       </div>
 
       {shortUrl && (
-        <div className={styles.result}>
+        <div className={styles.result} role="status">
           <p className={styles.resultLabel}>Your short link:</p>
           <div className={styles.resultRow}>
             <code className={styles.shortUrl}>{shortUrl}</code>

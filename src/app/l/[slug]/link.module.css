@@ -1,175 +1,115 @@
 .container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #1a202c;
-  padding: 2rem;
+  width: 100%;
+  max-width: 640px;
+  margin: clamp(8px, 4vh, 40px) auto;
 }
 
-.card {
-  background: white;
-  padding: 3rem 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  max-width: 500px;
-  width: 100%;
+.card, .error {
+  padding: 28px 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.eyebrow {
+  composes: eyebrow from '../../../components/ui/ProductShell.module.css';
+  margin-bottom: 24px;
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #000;
-  margin: 0 0 2rem 0;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 650;
+  letter-spacing: -.065em;
+  margin-bottom: 32px;
+}
+
+.title span {
+  color: var(--accent-text);
 }
 
 .info {
-  margin-bottom: 1.5rem;
-  text-align: left;
+  margin-bottom: 24px;
+  min-width: 0;
 }
 
 .label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #718096;
-  margin: 0 0 0.5rem 0;
+  composes: eyebrow from '../../../components/ui/ProductShell.module.css';
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.shortUrl, .longUrl {
+  display: block;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg);
+  font: 14px/1.8 var(--mono);
+  overflow-wrap: anywhere;
 }
 
 .shortUrl {
-  font-size: 1rem;
-  color: #1a202c;
-  word-break: break-all;
-  display: block;
-  padding: 0.75rem;
-  background: #f7fafc;
-  border-radius: 6px;
-  margin-bottom: 0.75rem;
-}
-
-.copyButton {
-  padding: 0.5rem 1rem;
-  background: #000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.copyButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: var(--accent-text);
+  margin-bottom: 12px;
 }
 
 .longUrl {
-  font-size: 1rem;
-  color: #2b6cb0;
-  word-break: break-all;
-  display: block;
-  padding: 0.75rem;
-  background: #f7fafc;
-  border-radius: 6px;
-  transition: background 0.2s;
-  text-decoration: none;
+  color: var(--muted);
 }
 
 .longUrl:hover {
-  background: #edf2f7;
+  color: var(--text);
   text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.copyButton, .createButton {
+  composes: secondaryButton from '../../../components/ui/ProductShell.module.css';
+}
+
+.copyButton {
+  min-height: 44px;
+  padding: 10px 16px;
 }
 
 .clickCount {
-  font-size: 0.9rem;
-  color: #4a5568;
-  font-weight: 600;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 0 0 1.5rem 0;
+  flex-direction: column;
+  padding: 20px;
+  margin-bottom: 28px;
+  border: 1px solid var(--line);
+  background: var(--bg);
 }
 
-.clickCount i {
-  color: #16a34a;
+.clickCount strong {
+  color: var(--accent-text);
+  font: 500 40px/1.2 var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.06em;
 }
 
 .actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  display: grid;
+  gap: 12px;
 }
 
-.visitButton {
-  padding: 0.875rem 1.5rem;
-  background: #000;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: block;
-  text-decoration: none;
-  text-align: center;
-}
-
-.visitButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.createButton {
-  padding: 0.875rem 1.5rem;
-  background: white;
-  color: #000;
-  border: 2px solid #000;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: block;
-  text-decoration: none;
-  text-align: center;
-}
-
-.createButton:hover {
-  background: #000;
-  color: white;
-}
-
-.loading,
-.error {
-  color: white;
-  text-align: center;
+.visitButton, .homeLink {
+  composes: primaryButton from '../../../components/ui/ProductShell.module.css';
 }
 
 .error h1 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.homeLink {
-  display: inline-block;
-  padding: 0.875rem 1.5rem;
-  background: white;
-  color: #000;
-  border-radius: 8px;
+  font-size: 28px;
   font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none;
+  letter-spacing: -.04em;
+  margin-bottom: 24px;
 }
 
-.homeLink:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+@media (min-width: 640px) {
+  .card, .error {
+    padding: 36px;
+  }
+  .actions {
+    grid-template-columns: 1fr 1fr;
+  }
 }

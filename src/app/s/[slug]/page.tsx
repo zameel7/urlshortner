@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { doc, getDoc, updateDoc, increment, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import ProductShell from '@/components/ui/ProductShell';
+import styles from './redirect.module.css';
 
 export default function RedirectPage() {
   const params = useParams();
@@ -45,16 +47,17 @@ export default function RedirectPage() {
   }, [slug, router]);
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'white',
-      }}
-    >
-      <div className="spinner"></div>
-    </div>
+    <ProductShell>
+      <div className={styles.container} role="status">
+        <p className={styles.eyebrow}>LINK / REDIRECT</p>
+        <div className={styles.track} aria-hidden="true">
+          <span />
+        </div>
+        <h1>
+          Taking you there<span>_</span>
+        </h1>
+        <p>Opening your destination...</p>
+      </div>
+    </ProductShell>
   );
 }

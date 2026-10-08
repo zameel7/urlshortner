@@ -1,11 +1,11 @@
 .container {
-  --bg: #0a0b0d;
-  --panel: #111315;
-  --text: #f2f3ed;
-  --muted: #a2a69d;
-  --line: #30342d;
-  --accent: #c6ff3d;
-  --accent-text: #c6ff3d;
+  --bg: var(--trim-bg);
+  --panel: var(--trim-panel);
+  --text: var(--trim-text);
+  --muted: var(--trim-muted);
+  --line: var(--trim-line);
+  --accent: var(--trim-accent);
+  --accent-text: var(--trim-accent-text);
   --mono: var(--font-landing-mono), monospace;
   background: var(--bg);
   color: var(--text);
@@ -191,7 +191,7 @@
   .footerProjects > .eyebrow { flex-shrink: 0; }
 }
 @media (prefers-color-scheme: light) {
-  .container { --bg: #f4f4f0; --panel: #eaece4; --text: #141710; --muted: #53594d; --line: #c7ccbe; --accent-text: #446500; color-scheme: light; }
+  .container { color-scheme: light; }
 }
 @media (prefers-reduced-motion: reduce) {
   .container *, .container *::before, .container *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

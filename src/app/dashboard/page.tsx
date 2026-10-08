@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Image from 'next/image';
+import ProductShell, { LoadingSkeleton } from '@/components/ui/ProductShell';
 import { useAuth } from '@/contexts/AuthContext';
 import ShortenForm from '@/components/ShortenForm';
 import LinkHistory from '@/components/LinkHistory';
@@ -43,9 +43,9 @@ function DashboardContent() {
 
   if (!mounted || loading) {
     return (
-      <div className={styles.loading}>
-        <p>Loading...</p>
-      </div>
+      <ProductShell>
+        <LoadingSkeleton cards />
+      </ProductShell>
     );
   }
 
@@ -54,25 +54,16 @@ function DashboardContent() {
   }
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <div className={styles.logoContainer}>
-            <Image src="/logo.jpg" alt="trim.it Logo" width={48} height={48} className={styles.logoImage} />
-            <h1 className={styles.logoText}>trim.it</h1>
-          </div>
-          <div className={styles.userInfo}>
-            <span className={styles.userName}>{user.displayName}</span>
-            <button onClick={signOut} className={styles.signOutButton}>
-              Sign Out
-            </button>
-          </div>
+    <ProductShell userName={user.displayName} onSignOut={signOut}>
+      <div className={styles.main}>
+        <div className={styles.intro}>
+          <p className={styles.eyebrow}>01 / WORKSPACE</p>
+          <h1>
+            Your links. <span>Less noise.</span>
+          </h1>
         </div>
-      </header>
-
-      <main className={styles.main}>
         {showPendingNotification && initialUrl && (
-          <div className={styles.pendingNotification}>
+          <div className={styles.pendingNotification} role="status">
             <div className={styles.notificationContent}>
               <i className="ri-information-line"></i>
               <div className={styles.notificationText}>
@@ -91,14 +82,20 @@ function DashboardContent() {
         )}
         <ShortenForm initialUrl={initialUrl ?? undefined} />
         <LinkHistory />
-      </main>
-    </div>
+      </div>
+    </ProductShell>
   );
 }
 
 export default function DashboardPage() {
   return (
-    <Suspense fallback={<div className={styles.loading}><p>Loading...</p></div>}>
+    <Suspense
+      fallback={
+        <ProductShell>
+          <LoadingSkeleton cards />
+        </ProductShell>
+      }
+    >
       <DashboardContent />
     </Suspense>
   );
