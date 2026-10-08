@@ -2,6 +2,10 @@
 
 A simple URL shortener built with the same tech stack as the qrcodegen app: Next.js 16, React 19, TypeScript, Firebase (Auth + Firestore), CSS Modules, and Remixicon.
 
+## Brand assets
+
+The lime link mark is defined in `src/lib/brand.ts` and shared by the app headers and social preview images. Run `npm run assets:brand` with Node 22.6+ to regenerate the SVG/PNG logo, SVG/ICO favicons, 192/512px app icons, maskable icon, and Apple touch icon in `public/`. The original `logo.jpg` URL is also maintained.
+
 ## Features
 
 - Shorten long URLs to shareable links (`/s/{slug}`)

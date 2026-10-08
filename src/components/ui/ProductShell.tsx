@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import Image from 'next/image';
+import BrandMark from './BrandMark';
 import Link from 'next/link';
 import { JetBrains_Mono } from 'next/font/google';
 import styles from './ProductShell.module.css';
@@ -25,7 +25,7 @@ export default function ProductShell({ children, userName, onSignOut }: Props) {
       </a>
       <header className={styles.header}>
         <Link href="/" className={styles.brand} aria-label="trim.it home">
-          <Image src="/logo.jpg" alt="" width={36} height={36} className={styles.logo} />
+          <BrandMark />
           <span>
             trim.it<span className={styles.brandPeriod}>_</span>
           </span>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import BrandMark from '@/components/ui/BrandMark';
 import Link from 'next/link';
 import { JetBrains_Mono } from 'next/font/google';
 import AuthButton from '@/components/landing/AuthButton';
@@ -77,7 +77,7 @@ export default function LandingPage() {
     <a className={styles.skipLink} href="#main">Skip to content</a>
     <header className={styles.header}>
       <Link href="/" className={styles.brand} aria-label="trim.it home">
-        <Image src="/logo.jpg" alt="" width={36} height={36} className={styles.logo} priority />
+        <BrandMark />
         <span>trim.it<span className={styles.brandPeriod}>_</span></span>
       </Link>
       <nav className={styles.nav} aria-label="Main navigation">

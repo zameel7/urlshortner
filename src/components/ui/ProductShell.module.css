@@ -55,8 +55,8 @@
   flex-shrink: 0;
 }
 
-.logo {
-  border-radius: 2px;
+.brand svg {
+  flex-shrink: 0;
 }
 
 .brandPeriod {

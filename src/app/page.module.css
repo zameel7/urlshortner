@@ -20,7 +20,7 @@
 .header, .container main, .footer { max-width: 1200px; margin: 0 auto; }
 .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 22px 0 12px; border-bottom: 1px solid var(--line); }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 26px; font-weight: 700; letter-spacing: -1.5px; min-height: 44px; }
-.logo { border-radius: 2px; }
+.brand svg { flex-shrink: 0; }
 .brandPeriod { color: var(--accent-text); }
 .nav { order: 3; width: 100%; display: flex; justify-content: space-between; font-size: 12px; font-family: var(--mono); color: var(--muted); }
 .nav a { display: inline-flex; align-items: center; min-height: 44px; }
