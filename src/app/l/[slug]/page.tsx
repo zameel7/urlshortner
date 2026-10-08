@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import styles from './link.module.css';
+import ProductShell, { LoadingSkeleton } from '@/components/ui/ProductShell';
 
 interface LinkData {
   longUrl: string;
@@ -61,66 +62,77 @@ export default function LinkSharePage() {
 
   if (loading) {
     return (
-      <div className={styles.container}>
-        <div className={styles.loading}>Loading link...</div>
-      </div>
+      <ProductShell>
+        <div className={styles.container}>
+          <LoadingSkeleton label="Loading link..." />
+        </div>
+      </ProductShell>
     );
   }
 
   if (error || !linkData) {
     return (
-      <div className={styles.container}>
-        <div className={styles.error}>
-          <h1>❌ {error || 'Short link not found'}</h1>
-          <Link href="/" className={styles.homeLink}>
-            Go to Home
-          </Link>
+      <ProductShell>
+        <div className={styles.container}>
+          <div className={styles.error} role="alert">
+            <p className={styles.eyebrow}>LINK / UNAVAILABLE</p>
+            <h1>{error || 'Short link not found'}</h1>
+            <Link href="/" className={styles.homeLink}>
+              Go to Home
+            </Link>
+          </div>
         </div>
-      </div>
+      </ProductShell>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <h1 className={styles.title}>trim.it</h1>
-        <div className={styles.info}>
-          <p className={styles.label}>Short link</p>
-          <code className={styles.shortUrl}>{shortUrl}</code>
-          <button onClick={copyShortLink} className={styles.copyButton}>
-            {copied ? (
-              <i className="ri-check-line"></i>
-            ) : (
-              <i className="ri-file-copy-line"></i>
-            )}{' '}
-            {copied ? 'Copied!' : 'Copy'}
-          </button>
-        </div>
-        <div className={styles.info}>
-          <p className={styles.label}>Original URL</p>
-          <a
-            href={linkData.longUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.longUrl}
-          >
-            {linkData.longUrl}
-          </a>
-        </div>
-        {linkData.clickCount !== undefined && (
-          <p className={styles.clickCount}>
-            <i className="ri-cursor-line"></i> {linkData.clickCount} clicks
-          </p>
-        )}
-        <div className={styles.actions}>
-          <Link href={`/s/${slug}`} className={styles.visitButton}>
-            Visit link
-          </Link>
-          <Link href="/" className={styles.createButton}>
-            Create Your Own
-          </Link>
+    <ProductShell>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <p className={styles.eyebrow}>LINK / PREVIEW</p>
+          <h1 className={styles.title}>
+            trim.it<span>_</span>
+          </h1>
+          <div className={styles.info}>
+            <p className={styles.label}>Short link</p>
+            <code className={styles.shortUrl}>{shortUrl}</code>
+            <button onClick={copyShortLink} className={styles.copyButton}>
+              {copied ? (
+                <i className="ri-check-line"></i>
+              ) : (
+                <i className="ri-file-copy-line"></i>
+              )}{' '}
+              {copied ? 'Copied!' : 'Copy'}
+            </button>
+          </div>
+          <div className={styles.info}>
+            <p className={styles.label}>Original URL</p>
+            <a
+              href={linkData.longUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.longUrl}
+            >
+              {linkData.longUrl}
+            </a>
+          </div>
+          {linkData.clickCount !== undefined && (
+            <div className={styles.clickCount}>
+              <span className={styles.label}>TOTAL CLICKS</span>
+              <strong>{linkData.clickCount}</strong>
+            </div>
+          )}
+          <div className={styles.actions}>
+            <Link href={`/s/${slug}`} className={styles.visitButton}>
+              Visit link
+            </Link>
+            <Link href="/" className={styles.createButton}>
+              Create Your Own
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </ProductShell>
   );
 }

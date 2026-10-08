@@ -45,3 +45,24 @@ button {
     transform: rotate(360deg);
   }
 }
+
+/* Shared landing and application palette. */
+:root {
+  --trim-bg: #0a0b0d;
+  --trim-panel: #111315;
+  --trim-text: #f2f3ed;
+  --trim-muted: #a2a69d;
+  --trim-line: #30342d;
+  --trim-accent: #c6ff3d;
+  --trim-accent-text: #c6ff3d;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --trim-bg: #f4f4f0;
+    --trim-panel: #eaece4;
+    --trim-text: #141710;
+    --trim-muted: #53594d;
+    --trim-line: #c7ccbe;
+    --trim-accent-text: #446500;
+  }
+}

@@ -1,42 +1,111 @@
 .container {
-  --bg: #0a0b0d;
-  --panel: #111315;
-  --text: #f2f3ed;
-  --muted: #a2a69d;
-  --line: #30342d;
-  --accent: #c6ff3d;
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg);
-  color: var(--text);
-  color-scheme: dark;
-  padding: 24px;
+  width: 100%;
+  max-width: 480px;
+  margin: clamp(16px, 5vh, 56px) auto;
 }
-.card { width: 100%; max-width: 440px; background: var(--panel); padding: 36px 24px 24px; border: 1px solid var(--line); border-radius: 2px; text-align: center; }
-.header { margin-bottom: 32px; }
-.iconWrapper { width: 52px; height: 52px; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-.iconWrapper i { font-size: 24px; color: var(--accent); }
-.title { font-size: 32px; font-weight: 600; letter-spacing: -.05em; color: var(--text); margin-bottom: 12px; }
-.subtitle { font-size: 14px; color: var(--muted); line-height: 1.8; }
-.form { display: flex; flex-direction: column; gap: 14px; }
-.label { font-family: monospace; font-size: 11px; color: var(--muted); letter-spacing: .08em; text-align: left; }
-.input { width: 100%; min-height: 56px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 2px; font-family: monospace; font-size: 18px; text-align: center; font-weight: 500; letter-spacing: 2px; background: var(--bg); color: var(--text); text-transform: uppercase; }
-.input::placeholder { color: var(--muted); opacity: 1; }
-.input:focus { border-color: var(--accent); }
-.input:-webkit-autofill { -webkit-text-fill-color: var(--text); -webkit-box-shadow: 0 0 0 1000px var(--bg) inset; }
-.button { width: 100%; min-height: 52px; padding: 14px; background: var(--accent); color: #0a0b0d; border: 1px solid var(--accent); border-radius: 2px; font-family: monospace; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 150ms; }
-.button:hover:not(:disabled) { background: #d7ff7c; }
-.button:disabled { opacity: .5; cursor: not-allowed; }
-.error, .success { font-size: 13px; color: var(--text); border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--bg); padding: 14px; line-height: 1.6; text-align: left; overflow-wrap: anywhere; }
-.error { border-left-color: var(--muted); }
-.footer { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
-.link { display: inline-flex; align-items: center; min-height: 44px; color: var(--text); text-decoration: underline; text-underline-offset: 4px; margin-left: 4px; }
-.link:hover { color: var(--accent); }
-.logoutButton { min-height: 44px; margin-top: 12px; background: none; border: none; color: var(--muted); font-family: monospace; font-size: 12px; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; padding: 12px; }
-.logoutButton:hover { color: var(--text); }
-.container :is(a, button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-@media (min-width: 640px) { .card { padding: 44px 36px 28px; } }
-@media (prefers-color-scheme: light) { .container { --bg: #f4f4f0; --panel: #eaece4; --text: #141710; --muted: #53594d; --line: #c7ccbe; color-scheme: light; } .iconWrapper i, .link:hover { color: #446500; } .container :is(a, button, input):focus-visible { outline-color: #446500; } }
-@media (prefers-reduced-motion: reduce) { .container * { transition: none !important; } }
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 32px 24px;
+  background: var(--panel);
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/ui/ProductShell.module.css';
+  margin-bottom: 24px;
+}
+
+.iconWrapper {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+  color: var(--accent-text);
+  font-size: 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -.05em;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.label {
+  composes: eyebrow from '../../components/ui/ProductShell.module.css';
+}
+
+.input {
+  composes: input from '../../components/ui/ProductShell.module.css';
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.button {
+  composes: primaryButton from '../../components/ui/ProductShell.module.css';
+  width: 100%;
+}
+
+.error, .success {
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent-text);
+  background: var(--bg);
+  padding: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.error {
+  border-left-color: var(--muted);
+}
+
+.footer {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-left: 4px;
+}
+
+.link:hover {
+  color: var(--accent-text);
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 44px 36px 28px;
+  }
+}

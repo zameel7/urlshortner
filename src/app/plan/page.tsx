@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import styles from './plan.module.css';
+import ProductShell, { LoadingSkeleton } from '@/components/ui/ProductShell';
 
 export default function PlanPage() {
   const [couponCode, setCouponCode] = useState('');
@@ -22,7 +23,13 @@ export default function PlanPage() {
   }, [user, loading, router, isSubscribed]);
 
   if (loading || isSubscribed) {
-    return null;
+    return (
+      <ProductShell>
+        <div className={styles.container}>
+          <LoadingSkeleton label="Loading access..." />
+        </div>
+      </ProductShell>
+    );
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,58 +63,54 @@ export default function PlanPage() {
   };
 
   return (
-    <main className={styles.container}>
-      <div className={styles.card}>
-        <div className={styles.header}>
-          <div className={styles.iconWrapper}>
-            <i className="ri-shield-keyhole-line"></i>
+    <ProductShell userName={user?.displayName} onSignOut={() => signOut()}>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <div className={styles.header}>
+            <p className={styles.eyebrow}>02 / EARLY ACCESS</p>
+            <div className={styles.iconWrapper}>
+              <i className="ri-shield-keyhole-line"></i>
+            </div>
+            <h1 className={styles.title}>Access Restricted</h1>
+            <p className={styles.subtitle}>
+              Enter your access code to proceed to the dashboard.
+            </p>
           </div>
-          <h1 className={styles.title}>Access Restricted</h1>
-          <p className={styles.subtitle}>
-            Enter your access code to proceed to the dashboard.
-          </p>
+
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <label htmlFor="coupon" className={styles.label}>ACCESS CODE</label>
+            <input
+              id="coupon"
+              type="text"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+              placeholder="Enter Code"
+              className={styles.input}
+              required
+              autoFocus
+              autoComplete="off"
+            />
+
+            {error && <div className={styles.error} role="alert">{error}</div>}
+            {success && <div className={styles.success} role="status">{success}</div>}
+
+            <button
+              type="submit"
+              className={styles.button}
+              disabled={submitting || !couponCode}
+            >
+              {submitting ? 'Verifying...' : 'Unlock Access'}
+            </button>
+          </form>
+
+          <div className={styles.footer}>
+            <span>Need access? </span>
+            <a href="mailto:zameelhassan7@gmail.com" className={styles.link}>
+              Contact Admin
+            </a>
+          </div>
         </div>
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <label htmlFor="coupon" className={styles.label}>ACCESS CODE</label>
-          <input
-            id="coupon"
-            type="text"
-            value={couponCode}
-            onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-            placeholder="Enter Code"
-            className={styles.input}
-            required
-            autoFocus
-            autoComplete="off"
-          />
-
-          {error && <div className={styles.error} role="alert">{error}</div>}
-          {success && <div className={styles.success} role="status">{success}</div>}
-
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={submitting || !couponCode}
-          >
-            {submitting ? 'Verifying...' : 'Unlock Access'}
-          </button>
-        </form>
-
-        <div className={styles.footer}>
-          <span className={styles.footerText}>Need access? </span>
-          <a href="mailto:zameelhassan7@gmail.com" className={styles.link}>
-            Contact Admin
-          </a>
-        </div>
-
-        <button
-          onClick={() => signOut()}
-          className={styles.logoutButton}
-        >
-          Sign Out
-        </button>
       </div>
-    </main>
+    </ProductShell>
   );
 }

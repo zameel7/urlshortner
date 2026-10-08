@@ -1,152 +1,115 @@
 .container {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  position: relative;
+  padding: 24px 20px;
+  margin-bottom: 48px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent-text);
+  border-radius: 2px;
+  min-width: 0;
+}
+
+.eyebrow {
+  composes: eyebrow from './ui/ProductShell.module.css';
+  color: var(--accent-text);
+  margin-bottom: 12px;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: clamp(26px, 3vw, 36px);
   font-weight: 600;
-  color: #1a202c;
-  margin: 0 0 1.5rem 0;
+  letter-spacing: -.05em;
+  margin-bottom: 28px;
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
-.inputGroup:first-of-type {
-  flex-direction: row;
-  flex-wrap: wrap;
+.inputGroup:last-of-type {
+  margin-bottom: 0;
+}
+
+.destinationRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
 }
 
 .pathLabel {
-  font-size: 0.875rem;
-  color: #4a5568;
-  margin: 0;
+  font: 11px/1.8 var(--mono);
+  color: var(--muted);
 }
 
 .pathLabel strong {
-  color: #1a202c;
+  color: var(--text);
+  font-weight: 500;
 }
 
 .input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.2s;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #000;
+  composes: input from './ui/ProductShell.module.css';
 }
 
 .shortenButton {
-  padding: 0.75rem 1.5rem;
-  background: #000;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  composes: primaryButton from './ui/ProductShell.module.css';
   white-space: nowrap;
 }
 
-.shortenButton:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.shortenButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 .result {
-  padding: 1.25rem;
-  background: #f7fafc;
-  border-radius: 8px;
-  border-left: 4px solid #000;
+  padding: 20px;
+  margin-top: 28px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent-text);
+  border-radius: 2px;
 }
 
 .resultLabel {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin: 0 0 0.5rem 0;
+  font: 11px var(--mono);
+  color: var(--muted);
+  margin-bottom: 14px;
 }
 
 .resultRow {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .shortUrl {
-  flex: 1;
   min-width: 0;
-  font-size: 0.95rem;
-  color: #1a202c;
-  word-break: break-all;
+  font: 14px/1.8 var(--mono);
+  color: var(--accent-text);
+  overflow-wrap: anywhere;
 }
 
 .copyButton {
-  padding: 0.5rem 1rem;
-  background: #000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  composes: secondaryButton from './ui/ProductShell.module.css';
+  min-height: 44px;
 }
 
-.copyButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
+@media (min-width: 640px) {
   .container {
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
+    padding: 32px;
   }
-
-  .inputGroup,
-  .inputGroup:first-of-type {
-    flex-direction: column;
-    gap: 0.75rem;
+  .destinationRow {
+    flex-direction: row;
   }
-
-  .input {
-    width: 100%;
+  .destinationRow .input {
+    flex: 1;
   }
-
   .shortenButton {
-    width: 100%;
+    min-width: 180px;
   }
-
   .resultRow {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
   }
-
-  .copyButton {
-    justify-content: center;
+  .shortUrl {
+    flex: 1;
   }
 }

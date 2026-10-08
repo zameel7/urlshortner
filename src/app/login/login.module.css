@@ -1,65 +1,57 @@
 .container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f7fafc;
+  width: 100%;
+  max-width: 480px;
+  margin: clamp(16px, 8vh, 80px) auto;
 }
 
 .card {
-  background: white;
-  padding: 3rem 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 32px 24px;
+  background: var(--panel);
+}
+
+.eyebrow {
+  composes: eyebrow from '../../components/ui/ProductShell.module.css';
+  margin-bottom: 32px;
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin: 0 0 0.5rem 0;
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 650;
+  letter-spacing: -.065em;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.title span {
+  color: var(--accent-text);
 }
 
 .subtitle {
-  color: #718096;
-  margin: 0 0 2rem 0;
-  font-size: 0.95rem;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 32px;
+  max-width: 300px;
 }
 
 .googleButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
+  composes: primaryButton from '../../components/ui/ProductShell.module.css';
   width: 100%;
-  padding: 0.875rem 1.5rem;
-  background: white;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1a202c;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.googleButton:hover {
-  background: #f7fafc;
-  border-color: #cbd5e0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .googleIcon {
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 2px;
+  padding: 2px;
 }
 
-.loading {
-  color: #1a202c;
-  font-size: 1.25rem;
-  font-weight: 500;
+@media (min-width: 640px) {
+  .card {
+    padding: 44px 36px;
+  }
 }
